@@ -1,85 +1,122 @@
-fnix-arm64
 A complete, elegant, and minimalistic NixOS configuration for ARM64 VMs (Apple Silicon), featuring Hyprland.
 
 This configuration is built with a modular approach, separating system and user settings for easy management and customization.
 
-!(https://www.google.com/search?q=https://raw.githubusercontent.com/JaKooLit/Hyprland-v3/main/screenshots/screenshot1.png)
+<!-- ![Screenshot](https://raw.githubusercontent.com/andev0x/fnix-arm64/main/screenshot.png) -->
+<!---->
+## Philosophy
 
-Philosophy
-Simple & Clean: A minimal set of applications and a clean user interface.
+- **Simple & Clean**: A minimal set of applications and a clean user interface.
+- **Logical**: A well-organized and easy-to-understand file structure.
+- **Productive**: Flexible window management and essential development tools pre-installed.
+- **Beautiful**: Aesthetically pleasing with a consistent theme (Catppuccin), fonts, and icons.
 
-Logical: A well-organized and easy-to-understand file structure.
+## Features
 
-Productive: Flexible window management and essential development tools pre-installed.
+- **OS**: NixOS
+- **Architecture**: `aarch64-linux`
+- **Window Manager**: Hyprland (Wayland)
+- **Terminal**: Kitty
+- **Bar**: Waybar
+- **App Launcher**: Wofi
+- **Shell**: Zsh with Oh My Zsh
+- **Theme & Icons**: Catppuccin Mocha, Papirus Icons
+- **Development Tools**: GCC, Go, Python, Node.js, Zig
 
-Beautiful: Aesthetically pleasing with a consistent theme (Catppuccin), fonts, and icons.
+## Structure
 
-Features
-OS: NixOS
-
-Architecture: aarch64-linux
-
-Window Manager: Hyprland (Wayland)
-
-Terminal: Kitty
-
-Bar: Waybar
-
-App Launcher: Wofi
-
-Shell: Zsh with Oh My Zsh
-
-Theme & Icons: Catppuccin Mocha, Papirus Icons
-
-Development Tools: GCC, Go, Python, Node.js, Zig
-
-Structure
 The configuration is split into two main parts:
 
-/nixos: System-level configuration.
+- `/nixos`: System-level configuration.
+  - `configuration.nix`: Main entry point, pulls everything together.
+  - `/modules`: System modules like hardware, networking, and services.
+- `/home-manager`: User-level configuration (dotfiles).
+  - `home.nix`: User entry point.
+  - `/modules`: User-specific modules for applications like Hyprland, Waybar, Kitty, etc.
 
-configuration.nix: Main entry point, pulls everything together.
+## Prerequisites
 
-/modules: System modules like hardware, networking, and services.
+Before you begin, ensure you have the following:
 
-/home-manager: User-level configuration (dotfiles).
+- A running ARM64 VM (e.g., using VMware Fusion on an Apple Silicon Mac).
+- A minimal installation of NixOS on the VM.
 
-home.nix: User entry point.
+## Installation
 
-/modules: User-specific modules for applications like Hyprland, Waybar, Kitty, etc.
+1.  **Enable Flakes**:
+    Enable the Nix command and flakes feature.
 
-Installation
-Install NixOS: Start with a minimal NixOS installation on your VMware Fusion ARM VM.
+    ```bash
+    # Edit this file as root
+    sudo nano /etc/nixos/configuration.nix
+    ```
 
-Enable Flakes: Enable Nix command and flakes feature.
+    Add the following lines:
 
-# Edit this file as root
-sudo nano /etc/nixos/configuration.nix
+    ```nix
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    ```
 
-Add the following lines:
+2.  **Rebuild the system**:
 
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    ```bash
+    sudo nixos-rebuild switch
+    ```
 
-Rebuild the system:
+3.  **Clone the Repository**:
 
-sudo nixos-rebuild switch
+    ```bash
+    # Make sure git is installed: nix-shell -p git
+    git clone https://github.com/andev0x/fnix-arm64.git
+    cd fnix-arm64
+    ```
 
-Clone the Repository:
+4.  **Customize User**:
+    Before building, you'll need to change the default username and home directory path.
 
-# Make sure git is installed: nix-shell -p git
-git clone [https://github.com/andev0x/fnix-arm64.git](https://github.com/andev0x/fnix-arm64.git)
-cd fnix-arm64
+    - In `nixos/configuration.nix`, change the username:
+      ```nix
+      users.users.andev = {
+      ```
+    - In `home-manager/home.nix`, change the home directory path:
+      ```nix
+      home.homeDirectory = "/home/andev";
+      ```
 
-Customize User:
-Before building, you might want to change the default username and home directory path in nixos/configuration.nix and home-manager/home.nix from andev to your preferred username.
+5.  **Build the System**:
+    Run the following command from the root of the repository:
 
-Build the System:
-Run the following command from the root of the repository:
+    ```bash
+    # This will build and switch to the new configuration defined in the flake
+    sudo nixos-rebuild switch --flake .#fnix-arm64
+    ```
 
-# This will build and switch to the new configuration defined in the flake
-sudo nixos-rebuild switch --flake .#fnix-arm64
+6.  **Reboot**:
+    After the build is successful, reboot the system. You should be greeted by a graphical login screen and your new Hyprland desktop!
 
-Reboot:
-After the build is successful, reboot the system. You should be greeted by a graphical login screen and your new Hyprland desktop!
+## Keybindings
+
+Here are some of the default keybindings for Hyprland:
+
+| Keybinding          | Action                   |
+| ------------------- | ------------------------ |
+| `Super + Q`         | Close window             |
+| `Super + M`         | Exit Hyprland            |
+| `Super + E`         | Open file manager (Thunar) |
+| `Super + T`         | Open terminal (Kitty)    |
+| `Super + Space`     | Open app launcher (Wofi) |
+| `Super + F`         | Toggle fullscreen        |
+| `Super + H/J/K/L`   | Move focus left/down/up/right |
+| `Super + Shift + H/J/K/L` | Move window left/down/up/right |
+| `Super + 1-9`       | Switch to workspace 1-9  |
+| `Super + Shift + 1-9` | Move window to workspace 1-9 |
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 
