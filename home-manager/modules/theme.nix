@@ -8,10 +8,10 @@
   # Install necessary fonts.
   home.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     font-awesome # For icons in Waybar
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono # Individual nerd font package
   ];
 
   # Configure GTK for a consistent look across applications.
