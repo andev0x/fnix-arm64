@@ -10,6 +10,13 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.device = "nodev";
 
+  # Basic filesystem configuration
+  # Note: This is a minimal configuration - adjust for your actual setup
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -25,7 +32,7 @@
   networking.firewall.enable = true;
 
   # Enable sound with PipeWire.
-  sound.enable = true;
+  # sound.enable = true; # Deprecated - removed
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -45,6 +52,9 @@
 
   # Nix settings for performance and features.
   nix.settings.auto-optimise-store = true;
+
+  # Enable zsh program for system-wide use
+  programs.zsh.enable = true;
 
   # Install essential system-wide packages.
   environment.systemPackages = with pkgs; [

@@ -18,11 +18,8 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Standard-Blue-dark";
-      package = pkgs.catppuccin-gtk.override {
-        accent = [ "blue" ];
-        variant = [ "mocha" ];
-      };
+      name = "Catppuccin-Mocha-Dark";
+      package = pkgs.catppuccin-gtk;
     };
     iconTheme = {
       name = "Papirus-Dark";
