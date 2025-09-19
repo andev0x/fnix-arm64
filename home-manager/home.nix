@@ -34,9 +34,6 @@
     wl-clipboard # Wayland clipboard tool
     swaybg # Wallpaper utility
 
-    # File manager
-    thunar
-
     # System monitoring
     btop
     neofetch

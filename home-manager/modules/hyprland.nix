@@ -21,7 +21,7 @@
 
       # Set programs that you use
       $terminal = kitty
-      $fileManager = ${pkgs.thunar}/bin/thunar
+      $fileManager = thunar
       $menu = wofi --show drun
 
       # Some default env vars.

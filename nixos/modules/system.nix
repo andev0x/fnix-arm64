@@ -71,6 +71,9 @@
     nodejs
     zig
 
+    # File manager
+    thunar
+
     # Web Browser
     firefox
   ];
