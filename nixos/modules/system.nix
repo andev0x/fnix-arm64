@@ -31,7 +31,8 @@
   services.pipewire = {
     enable = true;
     alsa.enable = true;
-    alsa.support32Bit = true;
+    # 32-bit support not needed on pure ARM64 systems
+    # alsa.support32Bit = true;
     pulse.enable = true;
   };
 
@@ -39,6 +40,7 @@
   services.printing.enable = true;
 
   # Enable VMware guest additions for better integration.
+  # Note: Some features may be limited on ARM64 VMs
   virtualisation.vmware.guest.enable = true;
 
   # Nix settings for performance and features.

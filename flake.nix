@@ -20,7 +20,7 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     # Define the NixOS configuration
     nixosConfigurations.fnix-arm64 = nixpkgs.lib.nixosSystem {
-      # The target system architecture
+      # The target system architecture - optimized for ARM64
       system = "aarch64-linux";
 
       # Special arguments passed to the modules, making inputs accessible

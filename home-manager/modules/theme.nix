@@ -20,8 +20,8 @@
     theme = {
       name = "Catppuccin-Mocha-Standard-Blue-dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "blue" ];
-        variants = [ "mocha" ];
+        accent = [ "blue" ];
+        variant = [ "mocha" ];
       };
     };
     iconTheme = {
