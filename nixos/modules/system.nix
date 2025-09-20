@@ -14,10 +14,14 @@
 
   # Basic filesystem configuration
   # Note: This is a minimal configuration - adjust for your actual setup
+  # fileSystems."/" = {
+  #   device = "/dev/disk/by-label/nixos";
+  #   fsType = "ext4";
+  # };
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-  };
+  device = "/dev/disk/by-uuid/029c8a77-2d09-418e-8c0f-935947c981ec";
+  fsType = "ext4";
+};
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
