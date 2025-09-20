@@ -55,7 +55,6 @@
     libglvnd
     # Fonts for proper text rendering
     adwaita-icon-theme
-    gnome.adwaita-icon-theme
   ];
 
   # Environment variables required for Wayland sessions.
