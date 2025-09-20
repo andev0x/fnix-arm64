@@ -6,9 +6,11 @@
 
 {
   # Bootloader configuration for UEFI systems.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.device = "nodev";
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # Basic filesystem configuration
   # Note: This is a minimal configuration - adjust for your actual setup
@@ -55,13 +57,13 @@
 
   # Nix settings for performance and features.
   nix.settings.auto-optimise-store = true;
-  
+
   # ARM64-specific optimizations
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   # Enable parallel building for ARM64 (adjust based on your CPU cores)
   nix.settings.max-jobs = "auto";
-  
+
   # Enable binary cache for faster builds on ARM64
   nix.settings.substituters = [
     "https://cache.nixos.org/"
