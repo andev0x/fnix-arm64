@@ -46,6 +46,11 @@
   # Enable printing support.
   services.printing.enable = true;
 
+  # Enable thunar services for proper file manager functionality
+  services.gvfs.enable = true; # GVFS for file system integration
+  services.udisks2.enable = true; # Disk management for thunar
+  services.devmon.enable = true; # Device monitoring for thunar
+
   # VMware guest additions - disabled for ARM64 as it has limited support
   # virtualisation.vmware.guest.enable = true;
 
@@ -71,6 +76,10 @@
   # Enable zsh program for system-wide use
   programs.zsh.enable = true;
 
+  # Enable programs for thunar integration
+  programs.thunar.enable = true;
+  programs.file-roller.enable = true; # Archive manager for thunar
+
   # Install essential system-wide packages optimized for ARM64.
   environment.systemPackages = with pkgs; [
     # System utilities
@@ -91,11 +100,18 @@
     rustc
     cargo
 
-    # File manager
+    # File manager (thunar with all dependencies)
     thunar
     gvfs # For trash support, mounting, etc.
-    xfce.thunar-volman
-    xfce.tumbler
+    xfce.thunar-volman # Volume management for thunar
+    xfce.tumbler # Thumbnail service for thunar
+    # Additional thunar dependencies for full functionality
+    xfce.exo # Utilities for thunar
+    xfce.libxfce4ui # UI library for thunar
+    xfce.libxfce4util # Utility library for thunar
+    # Desktop integration
+    desktop-file-utils # For desktop file integration
+    shared-mime-info # For MIME type support
 
     # Web Browser (ARM64 compatible)
     firefox
