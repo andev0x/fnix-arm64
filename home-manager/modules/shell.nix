@@ -23,6 +23,14 @@
       la = "ls -la";
       update = "sudo nixos-rebuild switch --flake ~/fnix-arm64";
       gc = "nix-collect-garbage -d";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
     };
   };
+
+  # Install Neovim
+  home.packages = with pkgs; [
+    neovim
+  ];
 }

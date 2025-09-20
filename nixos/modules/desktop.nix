@@ -32,5 +32,10 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # For Electron apps
     WLR_NO_HARDWARE_CURSORS = "1";
+    # ARM64-specific optimizations
+    MESA_GL_VERSION_OVERRIDE = "3.3";
+    __GL_THREADED_OPTIMIZATIONS = "1";
+    # Optimize for ARM64 graphics
+    LIBGL_ALWAYS_SOFTWARE = "0";
   };
 }

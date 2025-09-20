@@ -13,7 +13,8 @@
 
       # Programs to launch on startup
       exec-once = waybar &
-      exec-once = swaybg -i /run/current-system/sw/share/backgrounds/nixos/nix-wallpaper-catppuccin-mocha.png -m fill &
+      exec-once = swww init &
+      exec-once = swww img /run/current-system/sw/share/backgrounds/nixos/nix-wallpaper-catppuccin-mocha.png &
       exec-once = mako
 
       # Source a file (multi-file configs)
@@ -23,9 +24,20 @@
       $terminal = kitty
       $fileManager = thunar
       $menu = wofi --show drun
+      $editor = nvim
 
       # Some default env vars.
       env = XCURSOR_SIZE,24
+      # For GTK theming
+      env = GDK_BACKEND,wayland,x11
+      env = QT_QPA_PLATFORM,wayland;xcb
+      env = SDL_VIDEODRIVER,wayland
+      env = CLUTTER_BACKEND,wayland
+      env = GTK_THEME,Catppuccin-Mocha-Dark
+      
+      # ARM64-specific optimizations
+      env = MESA_GL_VERSION_OVERRIDE,3.3
+      env = __GL_THREADED_OPTIMIZATIONS,1
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input {
@@ -52,6 +64,8 @@
           col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
           col.inactive_border = rgba(595959aa)
           layout = dwindle
+          # Allow apps to request fullscreen
+          allow_tearing = false
       }
 
       decoration {
@@ -62,6 +76,7 @@
               enabled = true
               size = 3
               passes = 1
+              new_optimizations = on
           }
 
           drop_shadow = yes
@@ -99,12 +114,17 @@
           workspace_swipe = on
       }
 
-      # Example windowrule v1
-      # windowrule = float, ^(kitty)$
-      # Example windowrule v2
-      # windowrulev2 = float, class:^(kitty)$, title:^(kitty)$
+      # Window Rules
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      windowrulev2 = nomaximizerequest, class:.* # No fullscreen for better tiling
+      # Float file manager and utility windows
+      windowrulev2 = float, class:^(thunar)$
+      windowrulev2 = float, class:^(pavucontrol)$
+      windowrulev2 = float, title:^(File Operation Progress)$
+      windowrulev2 = float, title:^(Confirm to replace files)$
+      # No fullscreen for better tiling, allow tearing for games
+      windowrulev2 = nomaximizerequest, class:.*
+      windowrulev2 = immediate, class:^(cs2)$
+      windowrulev2 = fullscreen, class:^(cs2)$
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       $mainMod = SUPER
@@ -118,6 +138,10 @@
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, J, togglesplit, # dwindle
       bind = $mainMod, F, fullscreen, 0
+
+      # Neovim shortcuts
+      bind = $mainMod, N, exec, $terminal -e $editor
+      bind = $mainMod SHIFT, N, exec, $terminal -e $editor $(wofi --show drun)
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, left, movefocus, l
