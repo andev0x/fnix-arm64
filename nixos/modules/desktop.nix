@@ -50,6 +50,12 @@
     atk
     cairo
     gtk3
+    # Additional packages for proper rendering
+    mesa
+    libglvnd
+    # Fonts for proper text rendering
+    adwaita-icon-theme
+    gnome.adwaita-icon-theme
   ];
 
   # Environment variables required for Wayland sessions.
@@ -67,6 +73,13 @@
     GTK_THEME = "Adwaita:dark";
     XCURSOR_THEME = "Adwaita";
     XCURSOR_SIZE = "24";
+    # Critical: Set GSK renderer to fix GTK initialization
+    GSK_RENDERER = "ngl";
+    # Additional GTK environment variables for better compatibility
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
   };
 
   # Create log directory for regreet with proper permissions
