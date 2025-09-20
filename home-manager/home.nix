@@ -34,8 +34,8 @@
     wl-clipboard # Wayland clipboard tool
     swww # Wallpaper utility for Wayland
 
-    # File manager (ensure thunar is available for user)
-    thunar
+    # File manager (lightweight alternative)
+    pcmanfm
 
     # System monitoring (ARM64 optimized)
     btop

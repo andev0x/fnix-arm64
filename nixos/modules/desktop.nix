@@ -37,8 +37,7 @@
     __GL_THREADED_OPTIMIZATIONS = "1";
     # Optimize for ARM64 graphics
     LIBGL_ALWAYS_SOFTWARE = "0";
-    # Thunar-specific environment variables
-    THUNAR_VOLUME_MANAGER = "1";
+    # File manager environment variables
     GVFS_DISABLE_FUSE = "1";
   };
 }

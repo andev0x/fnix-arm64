@@ -22,7 +22,7 @@
 
       # Set programs that you use
       $terminal = kitty
-      $fileManager = thunar
+      $fileManager = pcmanfm
       $menu = wofi --show drun
       $editor = nvim
 
@@ -117,7 +117,7 @@
       # Window Rules
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
       # Float file manager and utility windows
-      windowrulev2 = float, class:^(thunar)$
+      windowrulev2 = float, class:^(pcmanfm)$
       windowrulev2 = float, class:^(pavucontrol)$
       windowrulev2 = float, title:^(File Operation Progress)$
       windowrulev2 = float, title:^(Confirm to replace files)$
